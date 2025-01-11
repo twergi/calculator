@@ -1,0 +1,18 @@
+services:
+  calculator-db:
+    container_name: calculator-pg
+    image: postgres:16.2
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=calculator
+      - POSTGRES_PASSWORD=postgres
+      - PGPORT=5432
+      - PGUSER=postgres
+      - POSTGRES_USER=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 10s
+      retries: 5

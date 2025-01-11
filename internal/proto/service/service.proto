@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package sso;
+
+option go_package = "calculator.v1";
+
+service Calculator {
+
+    // Calculate - посчитать
+    rpc Calculate(CalculateRequest) returns (CalculateResponse) {};
+
+    // GetPrevious - получить прошлое значение
+    rpc GetPrevious(GetPreviousRequest) returns (GetPreviousResponse) {};
+}
+
+message CalculateRequest {
+    int64 a = 1;
+    CalculateOperationEnum operation = 2;
+    int64 b = 3;
+}
+
+message CalculateResponse {
+    int64 result = 1;
+}
+
+message GetPreviousRequest {}
+
+message GetPreviousResponse {
+    int64 result = 1;
+}
+
+// CalculateOperationEnum - типы математических операций
+enum CalculateOperationEnum {
+	CALCULATE_OPERATION_UNSPECIFIED = 0;
+	CALCULATE_OPERATION_SUM = 1;
+	CALCULATE_OPERATION_SUB = 2;
+	CALCULATE_OPERATION_MULT = 3;
+	CALCULATE_OPERATION_DIV = 4;
+	CALCULATE_OPERATION_MOD = 5;
+}
