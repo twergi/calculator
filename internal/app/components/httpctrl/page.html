@@ -6,7 +6,7 @@
     <body>
         <h1>Калькулятор</h1>
         {{ if not (eq .error nil)}}
-        <p>Ошибка: {{ .error }}</p>
+        <p name="error">Ошибка: {{ .error }}</p>
         {{ end }}
         <form action="/calculate" method="POST">
             <input id="a" type="number" name="a" max="9223372036854775807" min="-9223372036854775808" value="{{ .a }}">
@@ -23,11 +23,11 @@
             <input id="b" type="number" name="b" max="9223372036854775807" min="-9223372036854775808" value="{{ .b }}">
             <input type="submit" value="=">
             {{ if not (eq .result nil) }}
-            <span>{{ .result }}</span>
+            <span name="result">{{ .result }}</span>
             {{ end }}
         </form>
         {{ if not (eq .prev nil) }}
-        <p>Предыдущее значение: {{ .prev }}</p>
+        <p name="prev">Предыдущее значение: {{ .prev }}</p>
         {{ end }}
     </body>
 </html>
